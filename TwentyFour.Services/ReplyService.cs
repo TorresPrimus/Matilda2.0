@@ -40,13 +40,13 @@ namespace TwentyFour.Services
             {
                 var query = ctx
                     .Reply
-                    .Where(e => e.Author == _userId)
+                    .Where(e => e.AuthorID == _userId)
                     .Select(
                     e =>
                         new ReplyListItem
                         {
-                            CommentId = e.CommentId,
-                            Author = e.Author,
+                            CommentId = e.CommentID,
+                            Author = e.AuthorID,
                             ReplyCommentID = e.ReplyCommentID,
                         }
                     );
@@ -62,13 +62,13 @@ namespace TwentyFour.Services
                 var entity =
                 ctx
                     .Reply
-                    .Single(e => e.CommentId == id && e.Author == _userId);
+                    .Single(e => e.CommentID == id && e.AuthorID == _userId);
                 return
                     new ReplyDetail
                     {
-                        CommentId = entity.CommentId,
+                        CommentID = entity.CommentID,
                         Text = entity.Text,
-                        Author = entity.Author,
+                        Author = entity.AuthorID,
                         ReplyCommentID = entity.ReplyCommentID,
                         ReplyComment = entity.ReplyComment,
                         CreatedUtc = entity.CreatedUtc

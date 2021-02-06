@@ -8,7 +8,7 @@ namespace TwentyFour.Models
 {
     public class CommentEdit
     {
-        public int CommentId { get; set; }
+        public int CommentID { get; set; }
         public string Text { get; set; }
     }
 }
