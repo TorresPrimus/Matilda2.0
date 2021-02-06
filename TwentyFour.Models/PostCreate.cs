@@ -17,8 +17,8 @@ namespace TwentyFour.Models
         [Required]
         [MaxLength(8000)]
         public string Text { get; set; }
-        [Required]
-        public Guid AuthorID { get; set; }
+        //[Required]
+        //public Guid AuthorID { get; set; }
 
     }
 }
