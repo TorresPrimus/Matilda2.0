@@ -20,5 +20,6 @@ namespace TwentyFour.Data
         [ForeignKey(nameof(CommentPost))]
         public int CommentPostID { get; set; }
         public virtual Post CommentPost { get; set; }
+        //yeet
     }
 }
