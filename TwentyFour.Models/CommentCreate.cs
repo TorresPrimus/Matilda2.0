@@ -9,13 +9,7 @@ namespace TwentyFour.Models
 {
     public class CommentCreate
     {
-
-        [Required]
-        [MaxLength(8000)]
+        [Required, MinLength(2, ErrorMessage = "Please enter at least 2 characters."), MaxLength(8000, ErrorMessage = "Too many characters for this field.")]
         public string Text { get; set; }
-        [Required]
-        public Guid AuthorID { get; set; }
-        [Required]
-        public int CommentPostID { get; set; }
     }
 }

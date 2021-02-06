@@ -10,7 +10,7 @@ namespace TwentyFour.Data
     public class User
     {
         [Required]
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

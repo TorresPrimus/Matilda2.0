@@ -12,19 +12,18 @@ namespace TwentyFour.Services
     {
         private readonly Guid _userId;
 
-        public CommentService(Guid userId)
+        public CommentService(Guid userid)
         {
-            _userId = userId;
+            _userId = userid;
         }
-
         public bool CreateComment(CommentCreate model)
         {
-            var entity = new Comment()
-            {
-                AuthorID = model.AuthorID,
-                Text = model.Text,
-                CommentPostID = model.CommentPostID,
-            };
+            var entity =
+                new Comment()
+                {
+                    Author = _userId,
+                    Text = model.Text,
+                };
 
             using (var ctx = new ApplicationDbContext())
             {
@@ -32,31 +31,26 @@ namespace TwentyFour.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-
-
-
-        public IEnumerable<CommentListItem> GetComment()
+        public IEnumerable<CommentListItem> GetNotes()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
                         .Comment
-                        .Where(e => e.AuthorID == _userId)
+                        .Where(e => e.Author == _userId)
                         .Select(
                             e =>
                                 new CommentListItem
                                 {
-                                    CommentID = e.CommentID,
-                                    AuthorID = e.AuthorID,
-                                    CommentPostID = e.CommentPostID
+                                    Author = e.Author,
+                                    Text = e.Text,
                                 }
                         );
 
                 return query.ToArray();
             }
         }
-
         public CommentDetail GetCommentById(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -64,21 +58,44 @@ namespace TwentyFour.Services
                 var entity =
                     ctx
                         .Comment
-                        .Single(e => e.CommentID == id && e.AuthorID == _userId);
+                        .Single(e => e.CommentId == id && e.Author == _userId);
                 return
                     new CommentDetail
                     {
-                        CommentID = entity.CommentID,
+                        CommentId = entity.CommentId,
                         Text = entity.Text,
-                        AuthorID = entity.AuthorID,
-                        CommentPostID = entity.CommentPostID,
-                        CommentPostName = entity.CommentPost.Title
+                        Author = entity.Author,
+                        CreatedUtc = entity.CreatedUtc
                     };
             }
         }
+        public bool UpdateComment(CommentEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Comment
+                        .Single(e => e.CommentId == model.CommentId && e.Author == _userId);
 
+                entity.Text = model.Text;
 
+                return ctx.SaveChanges() == 1;
+            }
+        }
+        public bool DeleteComment(int noteId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Comment
+                        .Single(e => e.CommentId == noteId && e.Author == _userId);
+
+                ctx.Comment.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
-
 }
-

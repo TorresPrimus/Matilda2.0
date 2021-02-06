@@ -38,6 +38,7 @@ namespace TwentyFour.Data
         public DbSet<Comment> Comment { get; set; }
         public DbSet<Reply> Reply { get; set; }
 
+        public DbSet<Comment> Comment { get; set; } // This needs to be changed, but to what???
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder
