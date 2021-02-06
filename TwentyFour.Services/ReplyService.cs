@@ -24,8 +24,6 @@ namespace TwentyFour.Services
                 new Reply()
                 {
                     Text = model.Text,
-                    AuthorID = model.AuthorID,
-                    CommentPostID = model.CommentPostID,
                     ReplyCommentID = model.ReplyCommentID
                 };
             using (var ctx = new ApplicationDbContext())
@@ -42,15 +40,14 @@ namespace TwentyFour.Services
             {
                 var query = ctx
                     .Reply
-                    .Where(e => e.AuthorID == _userId)
+                    .Where(e => e.Author == _userId)
                     .Select(
                     e =>
                         new ReplyListItem
                         {
-                            CommentID = e.CommentID,
-                            AuthorID = e.AuthorID,
+                            CommentId = e.CommentId,
+                            Author = e.Author,
                             ReplyCommentID = e.ReplyCommentID,
-                            CommentPostID = e.CommentPostID
                         }
                     );
                 return query.ToArray();
@@ -65,18 +62,16 @@ namespace TwentyFour.Services
                 var entity =
                 ctx
                     .Reply
-                    .Single(e => e.CommentID == id && e.AuthorID == _userId);
+                    .Single(e => e.CommentId == id && e.Author == _userId);
                 return
                     new ReplyDetail
                     {
-                        CommentID = entity.CommentID,
+                        CommentId = entity.CommentId,
                         Text = entity.Text,
-                        AuthorID = entity.AuthorID,
                         Author = entity.Author,
                         ReplyCommentID = entity.ReplyCommentID,
                         ReplyComment = entity.ReplyComment,
-                        CommentPostID = entity.CommentPostID,
-                        CommentPostName = entity.CommentPost.Title
+                        CreatedUtc = entity.CreatedUtc
 
                     };
             }
