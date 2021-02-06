@@ -16,13 +16,12 @@ namespace TwentyFour.Data
         [Required]
         public string Text { get; set; }
 
-        [ForeignKey(nameof(Author))]
+        //ForeignKey(nameof(Author))]
         public Guid AuthorID { get; set; }
-        public virtual User Author { get; set; }
 
-        //[ForeignKey(nameof(CommentPost))]
-        //public string CommentPostID { get; set; }
-        //public virtual Post CommentPost { get; set; }
+        [ForeignKey(nameof(Post))]
+        public int PostID { get; set; }
+        public virtual Post Post { get; set; }
 
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }

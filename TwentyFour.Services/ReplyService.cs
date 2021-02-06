@@ -24,7 +24,7 @@ namespace TwentyFour.Services
                 new Reply()
                 {
                     Text = model.Text,
-                    ReplyCommentID = model.ReplyCommentID
+                    CommentID = model.ReplyCommentID
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -45,9 +45,9 @@ namespace TwentyFour.Services
                     e =>
                         new ReplyListItem
                         {
-                            CommentId = e.CommentID,
-                            Author = e.AuthorID,
-                            ReplyCommentID = e.ReplyCommentID,
+                            CommentID = e.CommentID,
+                            ReplyID = e.ReplyID,
+                            PostTitle = e.Comment.Post.Title
                         }
                     );
                 return query.ToArray();
@@ -68,9 +68,8 @@ namespace TwentyFour.Services
                     {
                         CommentID = entity.CommentID,
                         Text = entity.Text,
-                        Author = entity.AuthorID,
-                        ReplyCommentID = entity.ReplyCommentID,
-                        ReplyComment = entity.ReplyComment,
+                        ReplyCommentID = entity.ReplyID,
+                        ReplyComment = entity.Comment,
                         CreatedUtc = entity.CreatedUtc
 
                     };
