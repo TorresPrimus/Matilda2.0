@@ -25,7 +25,6 @@ namespace TwentyFour.Services
                 new Like()
                 {
                     PostID = model.LikePostID,
-                    LikerID = model.LikerID
                 };
             using (var ctx = new ApplicationDbContext())
             {
