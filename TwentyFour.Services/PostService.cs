@@ -25,7 +25,7 @@ namespace TwentyFour.Services
             {
                 Title = model.Title,
                 Text = model.Title,
-                AuthorID = model.AuthorID
+                AuthorID = _userId
             };
 
             using (var ctx = new ApplicationDbContext())

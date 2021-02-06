@@ -22,7 +22,8 @@ namespace TwentyFour.Services
                 new Comment()
                 {
                     AuthorID = _userID,
-                    Text = model.Text,
+                    PostID = model.PostID,
+                    Text = model.Text
                 };
 
             using (var ctx = new ApplicationDbContext())

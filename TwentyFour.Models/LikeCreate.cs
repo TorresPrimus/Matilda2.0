@@ -11,8 +11,8 @@ namespace TwentyFour.Models
     {
         [Required]
         public int LikePostID { get; set; }
-        [Required]
-        public Guid LikerID { get; set; }
+        //[Required]
+        //public Guid LikerID { get; set; }
 
     }
 }
