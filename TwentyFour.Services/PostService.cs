@@ -67,8 +67,6 @@ namespace TwentyFour.Services
                         ID = entity.ID,
                         Title = entity.Title,
                         Text = entity.Text,
-                        AuthorID = entity.AuthorID,
-                        Author = entity.Author
                     };
             }
         }

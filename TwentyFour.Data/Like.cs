@@ -11,10 +11,8 @@ namespace TwentyFour.Data
     {
         public int ID { get; set; }
         [ForeignKey(nameof(LikedPost))]
-        public int LikePostID { get; set; }
+        public int PostID { get; set; }
         public virtual Post LikedPost { get; set; }
-        [ForeignKey(nameof(Liker))]
         public Guid LikerID { get; set; }
-        public virtual User Liker { get; set; }
     }
 }
