@@ -11,18 +11,18 @@ namespace TwentyFour.Data
     public class Comment
     {
         [Key]
-        public int CommentId { get; set; }
+        public int CommentID { get; set; }
 
         [Required]
         public string Text { get; set; }
 
         [ForeignKey(nameof(Author))]
-        public Guid Author { get; set; }
-        public virtual User AuthorId { get; set; }
+        public Guid AuthorID { get; set; }
+        public virtual User Author { get; set; }
 
-        [ForeignKey(nameof(CommentPost))]
-        public string CommentPostId { get; set; }
-        public virtual Post CommentPost { get; set; }
+        //[ForeignKey(nameof(CommentPost))]
+        //public string CommentPostID { get; set; }
+        //public virtual Post CommentPost { get; set; }
 
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }

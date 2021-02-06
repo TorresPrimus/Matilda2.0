@@ -10,18 +10,18 @@ namespace TwentyFour.Services
 {
     public class CommentService
     {
-        private readonly Guid _userId;
+        private readonly Guid _userID;
 
         public CommentService(Guid userid)
         {
-            _userId = userid;
+            _userID = userid;
         }
         public bool CreateComment(CommentCreate model)
         {
             var entity =
                 new Comment()
                 {
-                    Author = _userId,
+                    AuthorID = _userID,
                     Text = model.Text,
                 };
 
@@ -38,12 +38,12 @@ namespace TwentyFour.Services
                 var query =
                     ctx
                         .Comment
-                        .Where(e => e.Author == _userId)
+                        .Where(e => e.AuthorID == _userID)
                         .Select(
                             e =>
                                 new CommentListItem
                                 {
-                                    Author = e.Author,
+                                    Author = e.AuthorID,
                                     Text = e.Text,
                                 }
                         );
@@ -51,20 +51,20 @@ namespace TwentyFour.Services
                 return query.ToArray();
             }
         }
-        public CommentDetail GetCommentById(int id)
+        public CommentDetail GetCommentByID(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Comment
-                        .Single(e => e.CommentId == id && e.Author == _userId);
+                        .Single(e => e.CommentID == id && e.AuthorID == _userID);
                 return
                     new CommentDetail
                     {
-                        CommentId = entity.CommentId,
+                        CommentID = entity.CommentID,
                         Text = entity.Text,
-                        Author = entity.Author,
+                        Author = entity.AuthorID,
                         CreatedUtc = entity.CreatedUtc
                     };
             }
@@ -76,21 +76,21 @@ namespace TwentyFour.Services
                 var entity =
                     ctx
                         .Comment
-                        .Single(e => e.CommentId == model.CommentId && e.Author == _userId);
+                        .Single(e => e.CommentID == model.CommentID && e.AuthorID == _userID);
 
                 entity.Text = model.Text;
 
                 return ctx.SaveChanges() == 1;
             }
         }
-        public bool DeleteComment(int noteId)
+        public bool DeleteComment(int noteID)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Comment
-                        .Single(e => e.CommentId == noteId && e.Author == _userId);
+                        .Single(e => e.CommentID == noteID && e.AuthorID == _userID);
 
                 ctx.Comment.Remove(entity);
 

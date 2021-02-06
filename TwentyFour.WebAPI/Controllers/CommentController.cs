@@ -40,7 +40,7 @@ namespace TwentyFour.WebAPI.Controllers
         public IHttpActionResult Get(int id)
         {
             CommentService CommentService = CreateCommentService();
-            var note = CommentService.GetCommentById(id);
+            var note = CommentService.GetCommentByID(id);
             return Ok(note);
         }
         public IHttpActionResult Put(CommentEdit comment)
