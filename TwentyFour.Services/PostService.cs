@@ -73,6 +73,21 @@ namespace TwentyFour.Services
             }
         }
 
+        public bool UpdatePost(PostEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Post
+                        .Single(e => e.ID == model.ID && e.AuthorID == _userId);
+
+                entity.Text = model.Text;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
         public bool DeletePost(int postId)
         {
             using (var ctx = new ApplicationDbContext())
