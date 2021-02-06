@@ -58,11 +58,26 @@
     <Compile Include="CommentDetail.cs" />
     <Compile Include="CommentEdit.cs" />
     <Compile Include="CommentListItem.cs" />
+    <Compile Include="LikeCreate.cs" />
+    <Compile Include="LikeDetail.cs" />
+    <Compile Include="LikeListItem.cs" />
+    <Compile Include="PostCreate.cs" />
+    <Compile Include="PostDetail.cs" />
+    <Compile Include="PostListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReplyCreate.cs" />
+    <Compile Include="ReplyDetail.cs" />
+    <Compile Include="replyListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TwentyFour.Data\TwentyFour.Data.csproj">
+      <Project>{13459b20-d406-4ac1-add7-897baa7ee046}</Project>
+      <Name>TwentyFour.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
