@@ -12,6 +12,5 @@ namespace TwentyFour.Models
         public int LikePostID { get; set; }
         public virtual Post LikedPost { get; set; }
         public Guid LikerID { get; set; }
-        public virtual User Liker { get; set; }
     }
 }

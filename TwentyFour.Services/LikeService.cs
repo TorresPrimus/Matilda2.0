@@ -24,7 +24,7 @@ namespace TwentyFour.Services
             var entity =
                 new Like()
                 {
-                    LikePostID = model.LikePostID,
+                    PostID = model.LikePostID,
                     LikerID = model.LikerID
                 };
             using (var ctx = new ApplicationDbContext())
@@ -48,7 +48,7 @@ namespace TwentyFour.Services
                         new LikeListItem
                         {
                             LikerID = e.LikerID,
-                            LikePostID = e.LikePostID
+                            LikePostID = e.PostID
                         }
 
                         );
@@ -71,8 +71,7 @@ namespace TwentyFour.Services
                     new LikeDetail
                     {
                         LikerID = _userId,
-                        Liker = entity.Liker,
-                        LikePostID = entity.LikePostID,
+                        LikePostID = entity.PostID,
                         LikedPost = entity.LikedPost,
                     };
             }

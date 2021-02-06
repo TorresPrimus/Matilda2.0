@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,10 @@ namespace TwentyFour.Data
 {
     public class Reply : Comment
     {
-        [ForeignKey(nameof(ReplyComment))]
-        public int ReplyCommentID { get; set; }
-        public virtual Comment ReplyComment { get; set; }
+        [Key]
+        public int ReplyID { get; set; }
+
+        //[ForeignKey(nameof(Comment))]
+        public virtual Comment Comment { get; set; }
     }
 }

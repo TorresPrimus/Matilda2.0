@@ -17,8 +17,8 @@ namespace TwentyFour.Data
         [Required]
         public string Text { get; set; }
 
-        [ForeignKey(nameof(Author))]
+        //[ForeignKey(nameof(Author))]
         public Guid AuthorID { get; set; }
-        public virtual User Author { get; set; }
+        //public virtual User Author { get; set; }
     }
 }

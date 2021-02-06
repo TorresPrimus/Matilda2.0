@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace TwentyFour.Models
 {
-    public class ReplyListItem : CommentListItem
+    public class ReplyListItem
     {
-        public int ReplyCommentID { get; set; }
+        public int CommentID { get; set; }
+        public int ReplyID { get; set; }
+        public string PostTitle { get; set; }
     }
 }
